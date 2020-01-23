@@ -1,0 +1,54 @@
+<template>
+	<div class="vue-game-marker">
+		<div class="game-marker">
+			<ul class="list-unstyled py-0">
+				<li class="d-flex justify-content-between px-2 border-bottom border-secondary">
+					<span class="mr-4">Cerebros en el saco:</span>
+					<span>{{cerebros}}</span>
+				</li>
+				<li
+					v-if="totalCerebros > 0"
+					class="d-flex justify-content-between border-bottom border-secondary"
+				>
+					<span class="mr-4">Cerebros devorados:</span>
+					<span>{{totalCerebros}}</span>
+				</li>
+				<li class="d-flex justify-content-between px-2 border-bottom border-secondary">
+					<span class="mr-4">Disparos:</span>
+					<span>
+						{{disparos}}
+						<i
+							v-for="(shot, index) in disparos"
+							:key="index"
+							class="fa fa-yelp mx-1 text-danger"
+						></i>
+					</span>
+				</li>
+			</ul>
+		</div>
+	</div>
+</template>
+
+<script>
+export default {
+	data() {
+		return {};
+	},
+	components: {},
+	props: [],
+	computed: {
+		disparos() {
+			return this.$store.state.disparos;
+		},
+		cerebros() {
+			return this.$store.state.cerebros;
+		},
+		totalCerebros() {
+			return this.$store.state.totalCerebros;
+		}
+	}
+};
+</script>
+
+<style lang="scss" scoped>
+</style>
