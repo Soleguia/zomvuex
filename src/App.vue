@@ -12,11 +12,11 @@
 						<span class="partida__estado">{{ estado_partida }}</span>
 					</li>
 					<li>
-						<label>Jugadores:</label>
+						<label>Zombie:</label>
 						<span class="partida__jugadores">{{ jugadores }}</span>
 					</li>
 				</ul>
-				<p>
+				<p v-if="!jugadores">
 					<input type="text" v-model="jugador" @keyup.enter="guardarJugador" />
 					<br />
 					<button @click="guardarJugador">Guardar</button>

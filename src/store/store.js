@@ -67,7 +67,17 @@ export default new Vuex.Store({
         dice: { color: "grey" },
         face: "zombie"
       }
-    ]
+    ],
+    partidasJugadas: [{ ronda: 1 }],
+    partidaActual: 0
+  },
+  getters: {
+    partidasJugadas(state) {
+      return state.partidasJugadas.length;
+    },
+    rondaActual(state) {
+      return state.partidasJugadas[state.partidaActual].ronda;
+    }
   },
   mutations: {
     guardarJugador(state, jugador) {
@@ -86,7 +96,7 @@ export default new Vuex.Store({
       state.totalDados = dados;
     },
     actualizarTotalCerebros(state, cerebros) {
-      state.totalCerebros += cerebros;
+      state.totalCerebros = cerebros;
     },
     actualizarFinPartida(state, value) {
       state.gameover = value;
@@ -95,12 +105,20 @@ export default new Vuex.Store({
       state.win = value;
     },
     reiniciarTurno(state) {
+      state.partidasJugadas[state.partidaActual].rondas++;
+      state.totalDados = 13;
       state.cerebros = 0;
       state.disparos = 0;
-      // FixMe: map() ?
-      state.dados[0].disponibles = state.dados[0].cantidad;
-      state.dados[1].disponibles = state.dados[1].cantidad;
-      state.dados[2].disponibles = state.dados[2].cantidad;
+      state.dados.map(dado => {
+        return (dado.disponibles = dado.cantidad);
+      });
+    },
+    nuevaPartida(state) {
+      Object.assign(state.partidasJugadas, { ronda: 0 });
+      state.partidaActual++;
+    },
+    sumarRonda(state, partida) {
+      state.partidasJugadas[partida].rondas++;
     }
   }
 });

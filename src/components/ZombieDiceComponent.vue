@@ -36,7 +36,7 @@
 				<br />Has acabado con los humanos.
 			</h3>
 			<div class="d-flex justify-content-center mt-4 dice-roll__actions">
-				<button class="btn btn-success dice-roll__reroll" @click="reiniciarTurno()">¿Otra partida?</button>
+				<button class="btn btn-success dice-roll__reroll" @click="reiniciarJuego()">¿Otra partida?</button>
 			</div>
 		</div>
 	</div>
@@ -58,15 +58,24 @@ export default {
 	},
 	methods: {
 		reiniciarJuego() {
+			this.$store.commit("nuevaPartida");
 			this.$store.commit("reiniciarTurno");
 			this.$store.commit("actualizarFinPartida", false);
 			this.$store.commit("actualizarTotalDados", 13);
+			this.$store.commit("actualizarTotalCerebros", 0);
 			this.$store.commit("estadoPartida", false);
+			this.$store.commit("actualizarVictoria", false);
 		}
 	},
 	computed: {
+		partidaActual() {
+			return this.$store.state.partidaActual;
+		},
 		disparos() {
 			return this.$store.state.disparos;
+		},
+		totalCerebros() {
+			return this.$store.state.totalCerebros;
 		},
 		gameover() {
 			return this.$store.state.gameover;

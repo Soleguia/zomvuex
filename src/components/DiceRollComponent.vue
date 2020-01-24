@@ -120,9 +120,24 @@ export default {
 			}
 		},
 		comprobarPuntuacionCerebros() {
+			console.log(
+				"Check cerebros 1: total",
+				this.totalCerebros,
+				" + cerebros ",
+				this.cerebros
+			);
 			if (this.totalCerebros + this.cerebros >= 13) {
-				this.totalCerebros += this.cerebros;
+				this.$store.commit(
+					"actualizarTotalCerebros",
+					this.totalCerebros + this.cerebros
+				);
 			}
+			console.log(
+				"Check cerebros 2: total",
+				this.totalCerebros,
+				" + cerebros ",
+				this.cerebros
+			);
 			if (this.totalCerebros >= 13) {
 				this.$store.commit("actualizarVictoria", true);
 			}
@@ -143,16 +158,22 @@ export default {
 
 		// te plantas, los cerebros se acumulan y se resetea
 		plantarse() {
-			this.$store.commit("actualizarTotalCerebros", this.cerebros);
+			this.$store.commit(
+				"actualizarTotalCerebros",
+				this.totalCerebros + this.cerebros
+			);
 			this.reroll = this.$store.state.tiradaVacia;
+			this.$store.commit("sumarRonda", partidaActual);
 			this.reiniciarTurno();
 		},
 		reiniciarTurno() {
-			this.$store.commit("actualizarTotalDados", 13);
 			this.$store.commit("reiniciarTurno");
 		}
 	},
 	computed: {
+		partidaActual() {
+			return this.$store.state.partidaActual;
+		},
 		dados() {
 			return this.$store.state.dados;
 		},
