@@ -51,7 +51,8 @@ export default {
 			this.jugador = "";
 		},
 		empezarPartida() {
-			this.$store.commit("estadoPartida", true);
+      this.$store.commit("estadoPartida", true);
+      this.$store.commit("sumarRonda");
 		}
 	},
 	computed: mapState({

@@ -68,7 +68,7 @@ export default new Vuex.Store({
         face: "zombie"
       }
     ],
-    partidasJugadas: [{ ronda: 1 }],
+    partidasJugadas: [{ ronda: 0 }],
     partidaActual: 0
   },
   getters: {
@@ -104,8 +104,7 @@ export default new Vuex.Store({
     actualizarVictoria(state, value) {
       state.win = value;
     },
-    reiniciarTurno(state) {
-      state.partidasJugadas[state.partidaActual].rondas++;
+    reiniciarContadores(state) {
       state.totalDados = 13;
       state.cerebros = 0;
       state.disparos = 0;
@@ -113,12 +112,15 @@ export default new Vuex.Store({
         return (dado.disponibles = dado.cantidad);
       });
     },
+    reiniciarTotalCerebros(state) {
+      state.totalCerebros = 0;
+    },
     nuevaPartida(state) {
-      Object.assign(state.partidasJugadas, { ronda: 0 });
+      state.partidasJugadas.push({ ronda: 0 });
       state.partidaActual++;
     },
-    sumarRonda(state, partida) {
-      state.partidasJugadas[partida].rondas++;
+    sumarRonda(state) {
+      state.partidasJugadas[state.partidaActual].ronda++;
     }
   }
 });

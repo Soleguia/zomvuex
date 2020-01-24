@@ -58,13 +58,12 @@ export default {
 	},
 	methods: {
 		reiniciarJuego() {
-			this.$store.commit("nuevaPartida");
-			this.$store.commit("reiniciarTurno");
+      this.$store.commit("reiniciarContadores");
+      this.$store.commit("reiniciarTotalCerebros");
 			this.$store.commit("actualizarFinPartida", false);
-			this.$store.commit("actualizarTotalDados", 13);
-			this.$store.commit("actualizarTotalCerebros", 0);
 			this.$store.commit("estadoPartida", false);
 			this.$store.commit("actualizarVictoria", false);
+			this.$store.commit("nuevaPartida");
 		}
 	},
 	computed: {

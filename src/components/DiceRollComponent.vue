@@ -162,13 +162,10 @@ export default {
 				"actualizarTotalCerebros",
 				this.totalCerebros + this.cerebros
 			);
-			this.reroll = this.$store.state.tiradaVacia;
-			this.$store.commit("sumarRonda", partidaActual);
-			this.reiniciarTurno();
+      this.reroll = this.$store.state.tiradaVacia;
+      this.$store.commit("reiniciarContadores");
+      this.$store.commit("sumarRonda");
 		},
-		reiniciarTurno() {
-			this.$store.commit("reiniciarTurno");
-		}
 	},
 	computed: {
 		partidaActual() {
@@ -189,7 +186,7 @@ export default {
 		disparos() {
 			return this.$store.state.disparos;
 		}
-	}
+  },
 };
 </script>
 
