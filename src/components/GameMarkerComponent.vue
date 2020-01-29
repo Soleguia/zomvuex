@@ -41,19 +41,19 @@ export default {
 	},
 	computed: {
 		partidaActual() {
-			return this.$store.getters.partidasJugadas;
+			return this.$store.getters["ssot/partidasJugadas"];
 		},
 		ronda() {
-			return this.$store.getters.rondaActual;
+			return this.$store.getters["ssot/rondaActual"];
 		},
 		disparos() {
-			return this.$store.state.disparos;
+			return this.$store.state.ssot.disparos;
 		},
 		cerebros() {
-			return this.$store.state.cerebros;
+			return this.$store.state.ssot.cerebros;
 		},
 		totalCerebros() {
-			return this.$store.state.totalCerebros;
+			return this.$store.state.ssot.totalCerebros;
 		}
 	}
 };

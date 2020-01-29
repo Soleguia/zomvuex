@@ -1,9 +1,5 @@
-import Vue from "vue";
-import Vuex from "vuex";
-import _default from "vuex";
-Vue.use(Vuex);
-
-export default new Vuex.Store({
+export default {
+  namespaced: true,
   state: {
     partida: false,
     jugadores: [],
@@ -123,4 +119,4 @@ export default new Vuex.Store({
       state.partidasJugadas[state.partidaActual].ronda++;
     }
   }
-});
+};

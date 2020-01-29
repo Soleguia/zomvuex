@@ -58,29 +58,29 @@ export default {
 	},
 	methods: {
 		reiniciarJuego() {
-      this.$store.commit("reiniciarContadores");
-      this.$store.commit("reiniciarTotalCerebros");
-			this.$store.commit("actualizarFinPartida", false);
-			this.$store.commit("estadoPartida", false);
-			this.$store.commit("actualizarVictoria", false);
-			this.$store.commit("nuevaPartida");
+			this.$store.commit("ssot/reiniciarContadores");
+			this.$store.commit("ssot/reiniciarTotalCerebros");
+			this.$store.commit("ssot/actualizarFinPartida", false);
+			this.$store.commit("ssot/estadoPartida", false);
+			this.$store.commit("ssot/actualizarVictoria", false);
+			this.$store.commit("ssot/nuevaPartida");
 		}
 	},
 	computed: {
 		partidaActual() {
-			return this.$store.state.partidaActual;
+			return this.$store.state.ssot.partidaActual;
 		},
 		disparos() {
-			return this.$store.state.disparos;
+			return this.$store.state.ssot.disparos;
 		},
 		totalCerebros() {
-			return this.$store.state.totalCerebros;
+			return this.$store.state.ssot.totalCerebros;
 		},
 		gameover() {
-			return this.$store.state.gameover;
+			return this.$store.state.ssot.gameover;
 		},
 		win() {
-			return this.$store.state.win;
+			return this.$store.state.ssot.win;
 		}
 	}
 };

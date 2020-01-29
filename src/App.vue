@@ -47,23 +47,23 @@ export default {
 	},
 	methods: {
 		guardarJugador() {
-			this.$store.commit("guardarJugador", this.jugador);
+			this.$store.commit("ssot/guardarJugador", this.jugador);
 			this.jugador = "";
 		},
 		empezarPartida() {
-      this.$store.commit("estadoPartida", true);
-      this.$store.commit("sumarRonda");
+			this.$store.commit("ssot/estadoPartida", true);
+			this.$store.commit("ssot/sumarRonda");
 		}
 	},
 	computed: mapState({
-		partida: state => state.partida,
+		partida: state => state.ssot.partida,
 		estado_partida(state) {
-			if (state.partida) {
+			if (state.ssot.partida) {
 				return "A jugar!";
 			}
 			return "No hay partida";
 		},
-		jugadores: state => state.jugadores.join(", ")
+		jugadores: state => state.ssot.jugadores.join(", ")
 	})
 };
 </script>

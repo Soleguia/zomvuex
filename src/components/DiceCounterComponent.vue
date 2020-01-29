@@ -26,10 +26,10 @@ export default {
 	},
 	computed: {
 		totalDados() {
-			return this.$store.state.totalDados;
+			return this.$store.state.ssot.totalDados;
 		},
 		dados() {
-			return this.$store.state.dados;
+			return this.$store.state.ssot.dados;
 		}
 	}
 };

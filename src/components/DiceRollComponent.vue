@@ -27,7 +27,7 @@ export default {
 	},
 	data() {
 		return {
-			reroll: this.$store.state.tiradaVacia,
+			reroll: this.$store.state.ssot.tiradaVacia,
 			footstepsDices: []
 		};
 	},
@@ -113,10 +113,10 @@ export default {
 		},
 		resultados(dice) {
 			if (dice.face == "brain") {
-				this.$store.commit("sumarCerebro");
+				this.$store.commit("ssot/sumarCerebro");
 			}
 			if (dice.face == "shot") {
-				this.$store.commit("sumarDisparo");
+				this.$store.commit("ssot/sumarDisparo");
 			}
 		},
 		comprobarPuntuacionCerebros() {
@@ -128,7 +128,7 @@ export default {
 			);
 			if (this.totalCerebros + this.cerebros >= 13) {
 				this.$store.commit(
-					"actualizarTotalCerebros",
+					"ssot/actualizarTotalCerebros",
 					this.totalCerebros + this.cerebros
 				);
 			}
@@ -139,7 +139,7 @@ export default {
 				this.cerebros
 			);
 			if (this.totalCerebros >= 13) {
-				this.$store.commit("actualizarVictoria", true);
+				this.$store.commit("ssot/actualizarVictoria", true);
 			}
 		},
 		cuentaTotalDados() {
@@ -148,45 +148,45 @@ export default {
 			for (let d = 0; d < dados.length; d++) {
 				totalDados += dados[d].disponibles;
 			}
-			this.$store.commit("actualizarTotalDados", totalDados);
+			this.$store.commit("ssot/actualizarTotalDados", totalDados);
 		},
 		comprobarPuntuacionDisparos() {
 			if (this.disparos >= 3) {
-				this.$store.commit("actualizarFinPartida", true);
+				this.$store.commit("ssot/actualizarFinPartida", true);
 			}
 		},
 
 		// te plantas, los cerebros se acumulan y se resetea
 		plantarse() {
 			this.$store.commit(
-				"actualizarTotalCerebros",
+				"ssot/actualizarTotalCerebros",
 				this.totalCerebros + this.cerebros
 			);
-      this.reroll = this.$store.state.tiradaVacia;
-      this.$store.commit("reiniciarContadores");
-      this.$store.commit("sumarRonda");
-		},
+			this.reroll = this.$store.state.ssot.tiradaVacia;
+			this.$store.commit("ssot/reiniciarContadores");
+			this.$store.commit("ssot/sumarRonda");
+		}
 	},
 	computed: {
 		partidaActual() {
-			return this.$store.state.partidaActual;
+			return this.$store.state.ssot.partidaActual;
 		},
 		dados() {
-			return this.$store.state.dados;
+			return this.$store.state.ssot.dados;
 		},
 		totalDados() {
-			return this.$store.state.totalDados;
+			return this.$store.state.ssot.totalDados;
 		},
 		cerebros() {
-			return this.$store.state.cerebros;
+			return this.$store.state.ssot.cerebros;
 		},
 		totalCerebros() {
-			return this.$store.state.totalCerebros;
+			return this.$store.state.ssot.totalCerebros;
 		},
 		disparos() {
-			return this.$store.state.disparos;
+			return this.$store.state.ssot.disparos;
 		}
-  },
+	}
 };
 </script>
 
