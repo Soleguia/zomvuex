@@ -19,12 +19,7 @@
 </template>
 
 <script>
-import DiceComponent from "./DiceComponent.vue";
-
 export default {
-	components: {
-		DiceComponent
-	},
 	data() {
 		return {
 			reroll: this.$store.state.ssot.tiradaVacia,
@@ -190,7 +185,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .dice-roll {
 	display: flex;
 	flex-wrap: wrap;

@@ -18,6 +18,27 @@ Vue.filter("capitalize", function(value) {
   return value.charAt(0).toUpperCase() + value.slice(1);
 });
 
+Vue.component(
+  "zombie-dice",
+  require("./components/ZombieDiceComponent.vue").default
+);
+Vue.component(
+  "game-marker",
+  require("./components/GameMarkerComponent.vue").default
+);
+Vue.component(
+  "dice-component",
+  require("./components/DiceComponent.vue").default
+);
+Vue.component(
+  "dice-counter",
+  require("./components/DiceCounterComponent.vue").default
+);
+Vue.component(
+  "dice-roll",
+  require("./components/DiceRollComponent.vue").default
+);
+
 new Vue({
   el: "#app",
   store,

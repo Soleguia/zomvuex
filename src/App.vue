@@ -1,29 +1,27 @@
 <template>
 	<div id="app" class="container">
 		<div class="jumbotron">
-			<h1>
-				Zombie Dice
-				<small>(Vuex)</small>
-			</h1>
+			<h1>ZomVuex</h1>
 			<section class="pantalla--inicio" v-if="!partida">
-				<ul>
-					<li>
-						<label>Partida:</label>
-						<span class="partida__estado">{{ estado_partida }}</span>
-					</li>
-					<li>
-						<label>Zombie:</label>
-						<span class="partida__jugadores">{{ jugadores }}</span>
-					</li>
-				</ul>
 				<p v-if="!jugadores">
-					<input type="text" v-model="jugador" @keyup.enter="guardarJugador" />
+					<input
+						type="text"
+						v-model="jugador"
+						@keyup.enter="guardarJugador"
+						class="form-control"
+						placeholder="¿Cual es tu nombre?"
+					/>
 					<br />
-					<button @click="guardarJugador">Guardar</button>
+					<button @click="guardarJugador" class="btn btn-danger">Guardar</button>
+				</p>
+
+				<p v-if="jugadores">
+					<label>Zombie:</label>
+					<span class="partida__jugadores">{{ jugadores }}</span>
 				</p>
 
 				<p>
-					<button v-if="jugadores" @click="empezarPartida">Empezar partida</button>
+					<button v-if="jugadores" @click="empezarPartida" class="btn btn-primary">Empezar partida</button>
 				</p>
 			</section>
 			<section class="pantalla--juego" v-else>
@@ -35,11 +33,7 @@
 
 <script>
 import { mapState } from "vuex";
-import ZombieDice from "./components/ZombieDiceComponent.vue";
 export default {
-	components: {
-		ZombieDice
-	},
 	data() {
 		return {
 			jugador: ""
@@ -68,4 +62,12 @@ export default {
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+body {
+	background-color: #111;
+}
+.jumbotron {
+	color: white;
+	background-color: #111;
+}
+</style>

@@ -17,7 +17,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .dice {
 	display: flex;
 	justify-content: center;
@@ -36,27 +36,40 @@ export default {
 		font-family: "FontAwesome";
 		font-size: 50px;
 		color: white;
+		&:before {
+			display: block;
+			width: 100%;
+			height: 100%;
+			content: "";
+			background-repeat: no-repeat;
+			background-size: contain;
+			background-position: center center;
+		}
 	}
 }
 .dice_face {
 	&--zombie {
 		&:before {
-			content: "\f119";
+			// content: "\f119";
+			background-image: url(../assets/img/zombie-rise.png);
 		}
 	}
 	&--brain {
 		&:before {
-			content: "\f004";
+			// content: "\f004";
+			background-image: url(../assets/img/brain.png);
 		}
 	}
 	&--footsteps {
 		&:before {
-			content: "\f1b0";
+			//content: "\f1b0";
+			background-image: url(../assets/img/footsteps.png);
 		}
 	}
 	&--shot {
 		&:before {
-			content: "\f1e9";
+			// content: "\f1e9";
+			background-image: url(../assets/img/shot.png);
 		}
 	}
 }

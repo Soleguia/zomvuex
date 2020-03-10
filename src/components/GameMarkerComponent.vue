@@ -39,15 +39,25 @@ export default {
 	data() {
 		return {};
 	},
+	methods: {
+		getFromSsot(data) {
+			return this.$store.getters["ssot/" + data];
+		},
+		stateFromSsot(data) {
+			return this.$store.state.ssot[data];
+		}
+	},
 	computed: {
 		partidaActual() {
-			return this.$store.getters["ssot/partidasJugadas"];
+			return this.getFromSsot("partidasJugadas");
+			// return this.$store.getters["ssot/partidasJugadas"];
 		},
 		ronda() {
 			return this.$store.getters["ssot/rondaActual"];
 		},
 		disparos() {
-			return this.$store.state.ssot.disparos;
+			return this.stateFromSsot("disparos");
+			//return this.$store.state.ssot.disparos;
 		},
 		cerebros() {
 			return this.$store.state.ssot.cerebros;

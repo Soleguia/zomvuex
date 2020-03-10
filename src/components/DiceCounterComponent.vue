@@ -1,17 +1,17 @@
 <template>
 	<div class="vue-dice-counter">
 		<div class="dice-counter">
-			<ul class="list-unstyled mb-3">
+			<ul class="list-unstyled list-group list-group-horizontal mb-3">
 				<li
 					v-for="(dice, index) in dados"
 					:key="dice.color+'-'+index"
-					class="d-flex justify-content-between px-2 border-bottom border-secondary"
+					class="dice-flag"
+					:class="'dice-flag--'+dice.color"
 				>
-					<span class="mr-2">{{ dice.color | colorDados | capitalize }}:</span>
+					<!-- <span class="mr-2">{{ dice.color | colorDados | capitalize }}:</span> -->
 					<span>{{dice.disponibles}}</span>
 				</li>
-				<li class="d-flex justify-content-between px-2 border-bottom border-secondary">
-					<span class="mr-4">Total dados:</span>
+				<li class="dice-flag dice-flag--total">
 					<span>{{totalDados}}</span>
 				</li>
 			</ul>
@@ -36,4 +36,33 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.dice-counter {
+	display: flex;
+	justify-content: flex-end;
+}
+.dice-flag {
+	display: flex;
+	align-items: center;
+	padding: 10px;
+	&:before {
+		display: block;
+		margin-right: 6px;
+		width: 16px;
+		height: 16px;
+		content: "";
+		border-radius: 4px;
+	}
+	&--total:before {
+		background-image: linear-gradient(to bottom, red, yellow, green);
+	}
+	&--red:before {
+		background-color: red;
+	}
+	&--yellow:before {
+		background-color: yellow;
+	}
+	&--green:before {
+		background-color: green;
+	}
+}
 </style>
