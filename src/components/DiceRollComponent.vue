@@ -6,12 +6,12 @@
 		<div class="d-flex justify-content-center mt-4 dice-roll__actions">
 			<button
 				v-if="totalDados > 2"
-				class="btn btn-primary dice-roll__reroll"
+				class="btn btn-danger dice-roll__reroll"
 				@click="reRoll()"
 			>Tirar dados</button>
 			<button
 				v-if="totalDados < 13 && totalDados > 0"
-				class="btn btn-success ml-2 dice-roll__plantarse"
+				class="btn btn-info ml-2 dice-roll__plantarse"
 				@click="plantarse()"
 			>Plantarse</button>
 		</div>

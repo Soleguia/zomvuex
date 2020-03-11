@@ -20,7 +20,7 @@
 					></div>
 				</div>
 
-				<br />Los humanos han acabado contigo.
+				<br />Han acabado contigo.
 			</h2>
 			<div class="d-flex justify-content-center mt-4 dice-roll__actions">
 				<button class="btn btn-warning dice-roll__reroll" @click="reiniciarJuego()">Volver a jugar</button>
@@ -38,7 +38,7 @@
 						class="dice dice_face--brain dice_color--green"
 					></div>
 				</div>
-				<br />Has acabado con los humanos.
+				<br />¡Has ganado!
 			</h2>
 			<div class="d-flex justify-content-center mt-4 dice-roll__actions">
 				<button class="btn btn-success dice-roll__reroll" @click="reiniciarJuego()">¿Otra partida?</button>
