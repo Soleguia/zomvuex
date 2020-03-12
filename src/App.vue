@@ -20,20 +20,29 @@
 						¡ Hola, zombie
 						<strong class="partida__jugadores">{{ jugadores }}</strong> !
 					</p>
-					<p>
-						Este juego es muy sencillo, tienes que conseguir comerte
-						<strong>13 cerebros</strong> o más.
-					</p>
-					<p>
-						Pero tus presas pueden intentar
-						<strong>huir</strong> o
-						<strong>dispararte</strong>.
-					</p>
-					<p>Que intenten huir no es tan malo, les sigues el rastro.</p>
-					<p>
-						Que te disparen complica un poco las cosas, si acumulas
-						<strong>3 disparos en una misma ronda</strong> estás fuera.
-					</p>
+					<div class="d-flex justify-content-between mb-3">
+						<p class="pr-md-2">
+							Este juego es muy sencillo, tienes que conseguir comerte
+							<strong>13 cerebros</strong> o más.
+						</p>
+						<dice-component :dice="demo.dice.brain" :class="'dice--small'"></dice-component>
+					</div>
+					<div class="d-flex justify-content-between mb-3">
+						<p class="pr-md-2">
+							Pero tus presas pueden intentar
+							<strong>huir</strong> o
+							<strong>dispararte</strong>.
+							<br />Que intenten huir no es tan malo, les sigues el rastro.
+						</p>
+						<dice-component :dice="demo.dice.footsteps" :class="'dice--small'"></dice-component>
+					</div>
+					<div class="d-flex justify-content-between mb-5">
+						<p class="pr-md-2">
+							Que te disparen complica un poco las cosas, si acumulas
+							<strong>3 disparos o más en una misma ronda</strong> estás fuera.
+						</p>
+						<dice-component :dice="demo.dice.shot" :class="'dice--small'"></dice-component>
+					</div>
 					<button
 						v-if="jugadores"
 						@click="empezarPartida"
@@ -53,7 +62,23 @@ import { mapState } from "vuex";
 export default {
 	data() {
 		return {
-			jugador: ""
+			jugador: "",
+			demo: {
+				dice: {
+					shot: {
+						face: "shot",
+						dice: { color: "red" }
+					},
+					footsteps: {
+						face: "footsteps",
+						dice: { color: "yellow" }
+					},
+					brain: {
+						face: "brain",
+						dice: { color: "green" }
+					}
+				}
+			}
 		};
 	},
 	methods: {
@@ -80,6 +105,9 @@ export default {
 </script>
 
 <style lang="scss">
+* {
+	box-sizing: border-box;
+}
 body {
 	background-color: #111;
 }
@@ -114,7 +142,7 @@ body {
 	max-width: 100%;
 }
 .introduccion {
-	padding: 10px 20px 30px;
+	padding: 20px 20px 30px;
 	background-color: rgba(100, 100, 100, 0.3);
 	border-radius: 10px 20px;
 }

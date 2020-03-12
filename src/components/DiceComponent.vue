@@ -1,11 +1,9 @@
 <template>
-	<div class="vue-dice">
-		<div
-			class="dice"
-			:class="'dice_face--'+dice.face+' dice_color--'+dice.dice.color"
-			:title="dice.face"
-		></div>
-	</div>
+	<div
+		class="dice"
+		:class="'dice_face--'+dice.face+' dice_color--'+dice.dice.color"
+		:title="dice.face"
+	></div>
 </template>
 
 <script>
@@ -26,6 +24,15 @@ export default {
 	width: 100px;
 	height: 100px;
 	text-align: center;
+	&--medium {
+		width: 75px;
+		height: 75px;
+	}
+	&--small {
+		min-width: 50px;
+		width: 50px;
+		height: 50px;
+	}
 }
 
 .dice_face {
