@@ -12,7 +12,7 @@
 						placeholder="¿Cual es tu nombre?"
 					/>
 					<br />
-					<button @click="guardarJugador" class="btn btn-danger">Guardar</button>
+					<button @click="guardarJugador" class="btn btn-danger btn-block">Guardar</button>
 				</p>
 
 				<div v-else class="introduccion">
