@@ -19,8 +19,12 @@ Vue.filter("capitalize", function(value) {
 });
 
 Vue.component(
-  "zombie-dice",
-  require("./components/ZombieDiceComponent.vue").default
+  "pantalla-inicio",
+  require("./components/PantallaInicio.vue").default
+);
+Vue.component(
+  "pantalla-juego",
+  require("./components/PantallaJuego.vue").default
 );
 Vue.component(
   "game-marker",
