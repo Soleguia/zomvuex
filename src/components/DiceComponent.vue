@@ -11,7 +11,8 @@ export default {
 	data() {
 		return {};
 	},
-	props: ["dice"]
+	props: ["dice"],
+	computed: {}
 };
 </script>
 
@@ -29,9 +30,16 @@ export default {
 		height: 75px;
 	}
 	&--small {
+		margin: 6px;
 		min-width: 50px;
 		width: 50px;
 		height: 50px;
+	}
+	&--min {
+		margin: 4px;
+		min-width: 20px;
+		width: 20px;
+		height: 20px;
 	}
 }
 
@@ -58,25 +66,25 @@ export default {
 	&--zombie {
 		&:before {
 			// content: "\f119";
-			background-image: url(../assets/img/zombie-rise.png);
+			background-image: url(https://mentecuadrada.es/zomvuex/assets/img/zombie-rise.png);
 		}
 	}
 	&--brain {
 		&:before {
 			// content: "\f004";
-			background-image: url(../assets/img/brain.png);
+			background-image: url(https://mentecuadrada.es/zomvuex/assets/img/brain.png);
 		}
 	}
 	&--footsteps {
 		&:before {
 			//content: "\f1b0";
-			background-image: url(../assets/img/footsteps.png);
+			background-image: url(https://mentecuadrada.es/zomvuex/assets/img/footsteps.png);
 		}
 	}
 	&--shot {
 		&:before {
 			// content: "\f1e9";
-			background-image: url(../assets/img/shot.png);
+			background-image: url(https://mentecuadrada.es/zomvuex/assets/img/shot.png);
 		}
 	}
 }

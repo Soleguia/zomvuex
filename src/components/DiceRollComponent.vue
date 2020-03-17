@@ -1,17 +1,22 @@
 <template>
 	<div class="vue-dice-roll">
 		<div class="dice-roll">
-			<dice-component v-for="(dice, index) in reroll" :dice="dice" :key="dice.color+'-'+index"></dice-component>
+			<dice-component
+				v-for="(dice, index) in reroll"
+				:dice="dice"
+				:key="dice.color+'-'+index"
+				:class="responsiveDice"
+			></dice-component>
 		</div>
-		<div class="d-flex justify-content-center mt-4 dice-roll__actions">
+		<div class="dice-roll__actions">
 			<button
 				v-if="totalDados > 2"
-				class="btn btn-danger dice-roll__reroll"
+				class="btn btn-danger btn-block dice-roll__reroll"
 				@click="reRoll()"
 			>Tirar dados</button>
 			<button
 				v-if="totalDados < 13 && totalDados > 0"
-				class="btn btn-info ml-2 dice-roll__plantarse"
+				class="btn btn-info btn-block dice-roll__plantarse"
 				@click="plantarse()"
 			>Plantarse</button>
 		</div>
@@ -180,6 +185,14 @@ export default {
 		},
 		disparos() {
 			return this.$store.state.ssot.disparos;
+		},
+		responsiveDice() {
+			if (window.matchMedia("(max-width: 767px)").matches) {
+				/* The viewport is less than, or equal to, 700 pixels wide */
+				return "dice--small";
+			} else {
+				/* The viewport is greater than 700 pixels wide */
+			}
 		}
 	}
 };
@@ -187,11 +200,35 @@ export default {
 
 <style lang="scss">
 .dice-roll {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
+	&,
+	&__actions {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
 	&__title {
 		width: 100%;
+	}
+	&__actions {
+		width: 100%;
+		margin-top: 1.5rem;
+		.btn + .btn {
+			margin-top: 1rem;
+		}
+	}
+}
+@media (min-width: 768px) {
+	.dice-roll {
+		&__actions {
+			margin-top: 1.5rem;
+			.btn {
+				max-width: calc(50% - 0.25rem);
+			}
+			.btn + .btn {
+				margin-top: 0;
+				margin-left: 0.5rem;
+			}
+		}
 	}
 }
 </style>

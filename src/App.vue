@@ -1,12 +1,16 @@
 <template>
-	<div id="app" class="container">
-		<div class="jumbotron">
-			<h1 class="titulo">ZomVue</h1>
+	<div class="jumbotron">
+		<h1 class="titulo">ZomVue</h1>
+		<pantalla-info v-if="info"></pantalla-info>
 
-			<pantalla-inicio v-if="!partida"></pantalla-inicio>
+		<pantalla-inicio v-else-if="!partida"></pantalla-inicio>
 
-			<pantalla-juego v-else></pantalla-juego>
-		</div>
+		<pantalla-juego v-else></pantalla-juego>
+		<hr />
+		<button class="btn btn-light btn-sm" @click="toggleInfo">
+			<span v-if="info">Volver</span>
+			<span v-else>Info</span>
+		</button>
 	</div>
 </template>
 
@@ -15,8 +19,14 @@ import { mapState } from "vuex";
 export default {
 	data() {
 		return {
-			jugador: ""
+			jugador: "",
+			info: false
 		};
+	},
+	methods: {
+		toggleInfo() {
+			this.info = !this.info;
+		}
 	},
 	computed: mapState({
 		partida: state => state.ssot.partida,
@@ -37,13 +47,23 @@ export default {
 body {
 	background-color: #111;
 }
+#app {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 20px;
+	height: 100%;
+}
 .jumbotron {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	padding: 1rem 0.5rem;
+	width: 500px;
+	max-width: 100%;
 	color: white;
-	background-color: #111;
+	background-color: #222;
 }
 .titulo {
 	position: relative;
@@ -61,6 +81,24 @@ body {
 		transform: rotateZ(-15deg) translateX(-0.1rem) translateY(-1.5rem)
 			skewX(-40deg);
 		text-shadow: 6px 6px 4px rgb(136, 4, 4);
+	}
+}
+.pantalla--inicio,
+.pantalla--juego,
+.pantalla--resultado,
+.pantalla--info {
+	width: 500px;
+	max-width: 100%;
+}
+@media (min-width: 768px) {
+	#app {
+		padding: 50px;
+	}
+	.jumbotron {
+		padding: 2rem 1.5rem;
+	}
+	.btn-block + .btn-block {
+		margin-top: 0;
 	}
 }
 </style>

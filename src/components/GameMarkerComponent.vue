@@ -1,43 +1,77 @@
 <template>
-	<div class="vue-game-marker">
-		<div class="game-marker">
-			<ul class="list-unstyled py-0">
-				<li class="d-flex justify-content-between px-2 border-bottom border-secondary">
-					<span class="mr-4">Partida:</span>
-					<span>{{partidaActual}}</span>
-				</li>
-				<li class="d-flex justify-content-between px-2 border-bottom border-secondary">
-					<span class="mr-4">Ronda:</span>
-					<span>{{ronda}}</span>
-				</li>
-				<li class="d-flex justify-content-between px-2 border-bottom border-secondary">
-					<span class="mr-4">Cerebros en el saco:</span>
-					<span>{{cerebros}}</span>
-				</li>
-				<li class="d-flex justify-content-between border-bottom border-secondary">
-					<span class="mr-4">Cerebros devorados:</span>
-					<span>{{totalCerebros}}</span>
-				</li>
-				<li class="d-flex justify-content-between px-2 border-bottom border-secondary">
-					<span class="mr-4">Disparos:</span>
-					<span>
-						{{disparos}}
-						<i
-							v-for="(shot, index) in disparos"
-							:key="index"
-							class="fa fa-yelp mx-1 text-danger"
-						></i>
-					</span>
-				</li>
-			</ul>
+	<div class="game-marker">
+		<ul class="marcador">
+			<li class>
+				<span class="mr-4">Cerebros ronda:</span>
+				<span>{{cerebros}}</span>
+				<div class="marcador__dados">
+					<dice-component
+						v-for="(brain, index) in cerebros"
+						:key="index"
+						:dice="dice.brain"
+						:class="'mx-1 dice--min'"
+					></dice-component>
+				</div>
+			</li>
+			<li class>
+				<span class="mr-4">Disparos ronda:</span>
+				<span>{{disparos}}</span>
+				<div class="marcador__dados">
+					<dice-component
+						v-for="(shot, index) in disparos"
+						:key="index"
+						:dice="dice.shot"
+						:class="'mx-1 dice--min'"
+					></dice-component>
+				</div>
+			</li>
+		</ul>
+
+		<div class="marcador px-2 mb-3">
+			<span class="mr-4">Ronda:</span>
+			<span>{{ronda}}</span>
 		</div>
+
+		<ul class="marcador">
+			<li class>
+				<span class="mr-4">Partida:</span>
+				<span>{{partidaActual}}</span>
+			</li>
+			<li class>
+				<span class="mr-4">Cerebros partida:</span>
+				<span>{{totalCerebros}}</span>
+				<div class="marcador__dados">
+					<dice-component
+						v-for="(brain, index) in totalCerebros"
+						:key="index"
+						:dice="dice.brainGreen"
+						:class="'mx-1 dice--min'"
+					></dice-component>
+				</div>
+			</li>
+		</ul>
 	</div>
 </template>
 
 <script>
 export default {
 	data() {
-		return {};
+		return {
+			dice: {
+				shot: {
+					face: "shot",
+					dice: { color: "red" }
+				},
+				brain: {
+					face: "brain",
+					dice: { color: "yellow" }
+				},
+				brainGreen: {
+					face: "brain",
+					dice: { color: "green" }
+				}
+			}
+		};
 	},
 	methods: {
 		getFromSsot(data) {
@@ -69,5 +103,49 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+.game-marker {
+	ul {
+		list-style: none;
+		padding-left: 0;
+	}
+}
+.marcador {
+	display: block;
+	border-bottom: 1px solid #6c757d;
+
+	li {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		padding-right: 0.5rem;
+		padding-left: 0.5rem;
+	}
+	&__dados {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: flex-end;
+		width: 100%;
+	}
+}
+@media (max-width: 767px) {
+	.marcador {
+		li {
+			&:not(:last-child) {
+				border-bottom: 1px solid #6c757d;
+			}
+		}
+	}
+}
+@media (min-width: 768px) {
+	.marcador {
+		display: flex;
+		li {
+			width: 50%;
+			&:nth-child(even) {
+				text-align: right;
+			}
+		}
+	}
+}
 </style>

@@ -1,6 +1,6 @@
 <template>
 	<div class="dice-counter">
-		<ul class="list-unstyled list-group list-group-horizontal mb-3">
+		<ul class="dice-counter__list">
 			<li
 				v-for="(dice, index) in dados"
 				:key="dice.color+'-'+index"
@@ -33,14 +33,22 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .dice-counter {
 	display: flex;
 	justify-content: flex-end;
 	margin-top: 10px;
+
+	&__list {
+		display: flex;
+		flex-wrap: wrap;
+		padding-left: 0;
+	}
 }
 .dice-flag {
+	flex: 1 0 33%;
 	display: flex;
+	justify-content: flex-end;
 	align-items: center;
 	padding: 10px;
 	&:before {
@@ -65,6 +73,19 @@ export default {
 	}
 	&--green:before {
 		background-color: green;
+	}
+}
+@media (min-width: 768px) {
+	.dice-counter {
+		display: flex;
+		justify-content: flex-end;
+
+		&__list {
+			display: flex;
+		}
+		.dice-flag {
+			flex: 1 0 auto;
+		}
 	}
 }
 </style>

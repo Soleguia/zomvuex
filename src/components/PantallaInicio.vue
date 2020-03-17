@@ -17,28 +17,28 @@
 				¡ Hola, zombie
 				<strong class="partida__jugadores">{{ jugadores }}</strong> !
 			</p>
-			<div class="d-flex justify-content-between mb-3">
-				<p class="pr-md-2">
+			<div class="introduccion__tip">
+				<p class="introduccion__tip__texto">
 					Este juego es muy sencillo, tienes que conseguir comerte
 					<strong>13 cerebros</strong> o más.
 				</p>
-				<dice-component :dice="demo.dice.brain" :class="'dice--small'"></dice-component>
+				<dice-component :dice="demo.dice.brain" :class="'dice--small introduccion__tip__icono'"></dice-component>
 			</div>
-			<div class="d-flex justify-content-between mb-3">
-				<p class="pr-md-2">
+			<div class="introduccion__tip">
+				<p class="introduccion__tip__texto">
 					Pero tus presas pueden intentar
 					<strong>huir</strong> o
 					<strong>dispararte</strong>.
 					<br />Que intenten huir no es tan malo, les sigues el rastro.
 				</p>
-				<dice-component :dice="demo.dice.footsteps" :class="'dice--small'"></dice-component>
+				<dice-component :dice="demo.dice.footsteps" :class="'dice--small introduccion__tip__icono'"></dice-component>
 			</div>
-			<div class="d-flex justify-content-between mb-5">
-				<p class="pr-md-2">
+			<div class="introduccion__tip">
+				<p class="introduccion__tip__texto">
 					Que te disparen complica un poco las cosas, si acumulas
 					<strong>3 disparos o más en una misma ronda</strong> estás fuera.
 				</p>
-				<dice-component :dice="demo.dice.shot" :class="'dice--small'"></dice-component>
+				<dice-component :dice="demo.dice.shot" :class="'dice--small introduccion__tip__icono'"></dice-component>
 			</div>
 			<button v-if="jugadores" @click="empezarPartida" class="btn btn-danger btn-block">Empezar partida</button>
 		</div>
@@ -50,6 +50,7 @@ import { mapState } from "vuex";
 export default {
 	data() {
 		return {
+			jugador: "",
 			demo: {
 				dice: {
 					shot: {
@@ -70,6 +71,9 @@ export default {
 	},
 	methods: {
 		guardarJugador() {
+			if (this.jugador == "") {
+				this.jugador = "Aaargh";
+			}
 			this.$store.commit("ssot/guardarJugador", this.jugador);
 			this.jugador = "";
 		},
@@ -85,13 +89,27 @@ export default {
 </script>
 
 <style lang="scss">
-.pantalla--inicio {
-	width: 500px;
-	max-width: 100%;
-}
 .introduccion {
 	padding: 20px 20px 30px;
-	background-color: rgba(100, 100, 100, 0.3);
-	border-radius: 10px 20px;
+	// background-color: rgba(100, 100, 100, 0.3);
+	// border-radius: 10px 20px;
+	&__tip {
+		display: block;
+		margin-bottom: 1rem;
+		&:last-child {
+			margin-bottom: 2rem;
+		}
+	}
+}
+@media (min-width: 768px) {
+	.introduccion {
+		&__tip {
+			display: flex;
+			justify-content: space-between;
+			&__icono {
+				margin-left: 1rem;
+			}
+		}
+	}
 }
 </style>

@@ -23,6 +23,10 @@ Vue.component(
   require("./components/PantallaInicio.vue").default
 );
 Vue.component(
+  "pantalla-info",
+  require("./components/PantallaInfo.vue").default
+);
+Vue.component(
   "pantalla-juego",
   require("./components/PantallaJuego.vue").default
 );
