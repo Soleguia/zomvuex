@@ -32,8 +32,15 @@ export default {
 		};
 	},
 	methods: {
+		getFromSsot(data) {
+			return this.$store.getters["ssot/" + data];
+		},
+		getFromHistory(data) {
+			return this.$store.getters["history/" + data];
+		},
 		reRoll() {
 			this.reroll = this.diceRoll();
+			this.guardarTirada();
 			this.actualizarCuentaDados(this.reroll);
 		},
 		// la tirada
@@ -165,11 +172,27 @@ export default {
 			this.reroll = this.$store.state.ssot.tiradaVacia;
 			this.$store.commit("ssot/reiniciarContadores");
 			this.$store.commit("ssot/sumarRonda");
+		},
+		guardarTirada() {
+			let registro = {
+				partida: this.partidaActual,
+				ronda: this.ronda,
+				tirada: this.reroll
+			};
+			this.$store.commit("history/guardarTirada", registro);
 		}
 	},
 	computed: {
 		partidaActual() {
-			return this.$store.state.ssot.partidaActual;
+			return this.getFromSsot("partidasJugadas");
+			// return this.$store.getters["ssot/partidasJugadas"];
+		},
+		ronda() {
+			return this.getFromSsot("rondaActual");
+		},
+		historico() {
+			return this.getFromHistory("historicoPartida");
+			// return this.$store.getters["ssot/partidasJugadas"];
 		},
 		dados() {
 			return this.$store.state.ssot.dados;

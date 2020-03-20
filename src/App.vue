@@ -3,14 +3,22 @@
 		<h1 class="titulo">ZomVue</h1>
 		<pantalla-info v-if="info"></pantalla-info>
 
+		<pantalla-historico v-else-if="historico"></pantalla-historico>
+
 		<pantalla-inicio v-else-if="!partida"></pantalla-inicio>
 
 		<pantalla-juego v-else></pantalla-juego>
 		<hr />
-		<button class="btn btn-light btn-sm" @click="toggleInfo">
-			<span v-if="info">Volver</span>
-			<span v-else>Info</span>
-		</button>
+		<div class="juego__acciones">
+			<button class="btn btn-light btn-sm" @click="toggleInfo">
+				<span v-if="info">Volver</span>
+				<span v-else>Info</span>
+			</button>
+			<button v-if="partida" class="btn btn-light btn-sm" @click="toggleHistorico">
+				<span v-if="historico">Volver</span>
+				<span v-else>Historico</span>
+			</button>
+		</div>
 	</div>
 </template>
 
@@ -20,12 +28,22 @@ export default {
 	data() {
 		return {
 			jugador: "",
-			info: false
+			info: false,
+			historico: false
 		};
 	},
 	methods: {
 		toggleInfo() {
 			this.info = !this.info;
+			if (this.historico) {
+				this.historico = !this.historico;
+			}
+		},
+		toggleHistorico() {
+			this.historico = !this.historico;
+			if (this.info) {
+				this.info = !this.info;
+			}
 		}
 	},
 	computed: mapState({

@@ -27,6 +27,10 @@ Vue.component(
   require("./components/PantallaInfo.vue").default
 );
 Vue.component(
+  "pantalla-historico",
+  require("./components/PantallaHistorico.vue").default
+);
+Vue.component(
   "pantalla-juego",
   require("./components/PantallaJuego.vue").default
 );
