@@ -1,6 +1,24 @@
 <template>
-	<div class="jumbotron">
-		<h1 class="titulo">ZomVue</h1>
+	<div class="jumbotron" :class="'modo--'+modo">
+		<aside class="juego__modo">
+			<span
+				v-if="modo == 'infantil'"
+				@click="cambiarModo('zombies')"
+				class="juego__modo__interruptor juego__modo__interruptor--zombie"
+				title="Modo Zombies"
+			></span>
+			<span
+				v-else
+				@click="cambiarModo('infantil')"
+				class="juego__modo__interruptor juego__modo__interruptor--infantil"
+				title="Modo Infantil"
+			></span>
+		</aside>
+
+		<h1 class="titulo">
+			<span v-if="modo == 'infantil'">Nuece</span>
+			<span v-else>ZomVue</span>
+		</h1>
 		<pantalla-info v-if="info"></pantalla-info>
 
 		<pantalla-historico v-else-if="historico"></pantalla-historico>
@@ -44,9 +62,13 @@ export default {
 			if (this.info) {
 				this.info = !this.info;
 			}
+		},
+		cambiarModo(modo) {
+			this.$store.commit("ssot/cambiarModo", modo);
 		}
 	},
 	computed: mapState({
+		modo: state => state.ssot.modo,
 		partida: state => state.ssot.partida,
 		estado_partida(state) {
 			if (state.ssot.partida) {
@@ -69,7 +91,7 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	padding: 20px;
+	padding: 40px 20px;
 	height: 100%;
 }
 .jumbotron {
@@ -82,6 +104,28 @@ body {
 	max-width: 100%;
 	color: white;
 	background-color: #222;
+}
+.juego__modo {
+	position: fixed;
+	top: 10px;
+	right: 10px;
+
+	&__interruptor {
+		display: block;
+		width: 64px;
+		height: 64px;
+		background-repeat: no-repeat;
+		background-size: contain;
+		background-position: center center;
+		cursor: pointer;
+
+		&--zombie {
+			background-image: url(https://mentecuadrada.es/zomvuex/assets/img/mano-zombie.png);
+		}
+		&--infantil {
+			background-image: url(https://mentecuadrada.es/zomvuex/assets/img/ardilla-base.png);
+		}
+	}
 }
 .titulo {
 	position: relative;
@@ -117,6 +161,26 @@ body {
 	}
 	.btn-block + .btn-block {
 		margin-top: 0;
+	}
+}
+
+.modo--infantil {
+	&.jumbotron {
+		color: #222;
+		background-color: rgb(180, 127, 76);
+
+		a {
+			&,
+			&:visited,
+			&:focus {
+				color: white;
+			}
+		}
+		.juego__modo {
+			&__interruptor {
+				color: white;
+			}
+		}
 	}
 }
 </style>

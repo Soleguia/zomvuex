@@ -9,7 +9,10 @@
 				<dice-counter></dice-counter>
 			</div>
 			<div v-else-if="gameover" class="pantalla--resultado">
-				<h2 class="text-center">Has recibido {{disparos}} disparos.</h2>
+				<h2 class="text-center">
+					<span v-if="modo == 'infantil'">Han aparecido {{disparos}} ardillas.</span>
+					<span v-else>Has recibido {{disparos}} disparos.</span>
+				</h2>
 				<div class="pantalla--resultado__marcador">
 					<div
 						v-for="(shot, index) in disparos"
@@ -19,7 +22,10 @@
 						:class="responsiveDice"
 					></div>
 				</div>
-				<h2 class="text-center">Han acabado contigo.</h2>
+				<h2 class="text-center">
+					<span v-if="modo == 'infantil'">Se han quedado todas las nueces.</span>
+					<span v-else>Han acabado contigo.</span>
+				</h2>
 				<div class="dice-roll__actions">
 					<button class="btn btn-warning dice-roll__reroll" @click="reiniciarJuego()">Volver a jugar</button>
 				</div>
@@ -64,6 +70,9 @@ export default {
 		}
 	},
 	computed: {
+		modo() {
+			return this.$store.state.ssot.modo;
+		},
 		partidaActual() {
 			return this.$store.state.ssot.partidaActual;
 		},

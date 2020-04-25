@@ -62,6 +62,7 @@ export default {
 		}
 	}
 }
+
 .dice_face {
 	&--zombie {
 		&:before {
@@ -85,6 +86,34 @@ export default {
 		&:before {
 			// content: "\f1e9";
 			background-image: url(https://mentecuadrada.es/zomvuex/assets/img/shot.png);
+		}
+	}
+}
+.modo--infantil {
+	.dice_face {
+		&--zombie {
+			&:before {
+				// content: "\f119";
+				background-image: url(https://mentecuadrada.es/zomvuex/assets/img/ardilla-base.png);
+			}
+		}
+		&--brain {
+			&:before {
+				// content: "\f004";
+				background-image: url(https://mentecuadrada.es/zomvuex/assets/img/nuez.png);
+			}
+		}
+		&--footsteps {
+			&:before {
+				//content: "\f1b0";
+				background-image: url(https://mentecuadrada.es/zomvuex/assets/img/arbol.png);
+			}
+		}
+		&--shot {
+			&:before {
+				// content: "\f1e9";
+				background-image: url(https://mentecuadrada.es/zomvuex/assets/img/ardilla.png);
+			}
 		}
 	}
 }

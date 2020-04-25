@@ -2,7 +2,10 @@
 	<div class="game-marker">
 		<ul class="marcador">
 			<li class>
-				<span class="mr-4">Cerebros ronda:</span>
+				<span class="mr-4">
+					<span v-if="modo == 'infantil'">Nueces</span>
+					<span v-else>Cerebros</span> ronda:
+				</span>
 				<span>{{cerebros}}</span>
 				<div class="marcador__dados">
 					<dice-component
@@ -14,7 +17,10 @@
 				</div>
 			</li>
 			<li class>
-				<span class="mr-4">Disparos ronda:</span>
+				<span class="mr-4">
+					<span v-if="modo == 'infantil'">Ardillas</span>
+					<span v-else>Disparos</span> ronda:
+				</span>
 				<span>{{disparos}}</span>
 				<div class="marcador__dados">
 					<dice-component
@@ -38,7 +44,10 @@
 				<span>{{partidaActual}}</span>
 			</li>
 			<li class>
-				<span class="mr-4">Cerebros partida:</span>
+				<span class="mr-4">
+					<span v-if="modo == 'infantil'">Nueces</span>
+					<span v-else>Cerebros</span> partida:
+				</span>
 				<span>{{totalCerebros}}</span>
 				<div class="marcador__dados">
 					<dice-component
@@ -82,6 +91,9 @@ export default {
 		}
 	},
 	computed: {
+		modo() {
+			return this.$store.state.ssot.modo;
+		},
 		partidaActual() {
 			return this.getFromSsot("partidasJugadas");
 			// return this.$store.getters["ssot/partidasJugadas"];

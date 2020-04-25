@@ -1,6 +1,7 @@
 export default {
   namespaced: true,
   state: {
+    modo: "zombie",
     partida: false,
     jugadores: [],
     gameover: false,
@@ -76,6 +77,9 @@ export default {
     }
   },
   mutations: {
+    cambiarModo(state, modo) {
+      state.modo = modo;
+    },
     guardarJugador(state, jugador) {
       state.jugadores.push(jugador);
     },
