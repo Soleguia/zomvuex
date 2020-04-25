@@ -35,10 +35,7 @@
 <script>
 export default {
 	data() {
-		return {
-			partida: false,
-			ronda: false
-		};
+		return {};
 	},
 	methods: {
 		mismaPartida(tirada_id) {
