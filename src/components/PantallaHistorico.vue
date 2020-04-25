@@ -8,17 +8,13 @@
 				class="historico-partida"
 			>
 				<h4
-					class="historico-partida__titulo-partida"
-				>Partida: {{tirada.partida}} - Ronda: {{tirada.ronda}}</h4>
-				<!-- 				
-				<h4
-					v-if="!mismaPartida(tirada.partida)"
+					v-if="!mismaPartida(tirada_id)"
 					class="historico-partida__titulo-partida"
 				>Partida: {{tirada.partida}}</h4>
 				<h5
-					v-if="!mismaRonda(tirada.ronda)"
+					v-if="!mismaRonda(tirada_id)"
 					class="historico-partida__titulo-ronda"
-				>Ronda: {{tirada.ronda}}</h5>-->
+				>Ronda: {{tirada.ronda}}</h5>
 
 				<div class="historico-partida__tirada">
 					<span class="historico-partida__tirada__titulo">Tirada:</span>
@@ -45,23 +41,26 @@ export default {
 		};
 	},
 	methods: {
-		// mismaPartida(partida) {
-		// 	if (partida == this.partida) {
-		// 		return true;
-		// 	} else {
-		// 		this.partida = partida;
-		// 		this.ronda = false;
-		// 		return false;
-		// 	}
-		// },
-		// mismaRonda(ronda) {
-		// 	if (ronda == this.ronda) {
-		// 		return true;
-		// 	} else {
-		// 		this.ronda = ronda;
-		// 		return false;
-		// 	}
-		// },
+		mismaPartida(tirada_id) {
+			var actual = this.historicoPartida[tirada_id];
+			var anterior = this.historicoPartida[tirada_id - 1] || null;
+			if (anterior && actual.partida == anterior.partida) {
+				return true;
+			}
+			return false;
+		},
+		mismaRonda(tirada_id) {
+			var actual = this.historicoPartida[tirada_id];
+			var anterior = this.historicoPartida[tirada_id - 1] || null;
+			if (
+				anterior &&
+				actual.partida == anterior.partida &&
+				actual.ronda == anterior.ronda
+			) {
+				return true;
+			}
+			return false;
+		},
 		getFromHistory(data) {
 			return this.$store.getters["history/" + data];
 		}
@@ -69,7 +68,6 @@ export default {
 	computed: {
 		historicoPartida() {
 			return this.getFromHistory("historicoPartida");
-			// return this.$store.getters["ssot/partidasJugadas"];
 		}
 	}
 };
