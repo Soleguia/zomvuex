@@ -8,20 +8,24 @@
 				class="historico-partida"
 			>
 				<h4
+					class="historico-partida__titulo-partida"
+				>Partida: {{tirada.partida}} - Ronda: {{tirada.ronda}}</h4>
+				<!-- 				
+				<h4
 					v-if="!mismaPartida(tirada.partida)"
 					class="historico-partida__titulo-partida"
 				>Partida: {{tirada.partida}}</h4>
 				<h5
 					v-if="!mismaRonda(tirada.ronda)"
 					class="historico-partida__titulo-ronda"
-				>Ronda: {{tirada.ronda}}</h5>
+				>Ronda: {{tirada.ronda}}</h5>-->
 
 				<div class="historico-partida__tirada">
 					<span class="historico-partida__tirada__titulo">Tirada:</span>
 					<ul class="historico-partida__tirada__dados">
 						<li
 							v-for="(dado, dado_id) in tirada.tirada"
-							:key="'historico-partida--'+partida+'__ronda--'+ronda+'__tirada--'+tirada_id+'__dado--'+dado_id"
+							:key="'historico-partida--'+tirada.partida+'__ronda--'+tirada.ronda+'__tirada--'+tirada_id+'__dado--'+dado_id"
 						>
 							<dice-component :dice="dado" :class="'dice--small'"></dice-component>
 						</li>
@@ -41,23 +45,23 @@ export default {
 		};
 	},
 	methods: {
-		mismaPartida(partida) {
-			if (partida == this.partida) {
-				return true;
-			} else {
-				this.partida = partida;
-				this.ronda = false;
-				return false;
-			}
-		},
-		mismaRonda(ronda) {
-			if (ronda == this.ronda) {
-				return true;
-			} else {
-				this.ronda = ronda;
-				return false;
-			}
-		},
+		// mismaPartida(partida) {
+		// 	if (partida == this.partida) {
+		// 		return true;
+		// 	} else {
+		// 		this.partida = partida;
+		// 		this.ronda = false;
+		// 		return false;
+		// 	}
+		// },
+		// mismaRonda(ronda) {
+		// 	if (ronda == this.ronda) {
+		// 		return true;
+		// 	} else {
+		// 		this.ronda = ronda;
+		// 		return false;
+		// 	}
+		// },
 		getFromHistory(data) {
 			return this.$store.getters["history/" + data];
 		}

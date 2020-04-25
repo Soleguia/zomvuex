@@ -127,24 +127,24 @@ export default {
 			}
 		},
 		comprobarPuntuacionCerebros() {
-			console.log(
-				"Check cerebros 1: total",
-				this.totalCerebros,
-				" + cerebros ",
-				this.cerebros
-			);
+			// console.log(
+			// 	"Check cerebros 1: total",
+			// 	this.totalCerebros,
+			// 	" + cerebros ",
+			// 	this.cerebros
+			// );
 			if (this.totalCerebros + this.cerebros >= 13) {
 				this.$store.commit(
 					"ssot/actualizarTotalCerebros",
 					this.totalCerebros + this.cerebros
 				);
 			}
-			console.log(
-				"Check cerebros 2: total",
-				this.totalCerebros,
-				" + cerebros ",
-				this.cerebros
-			);
+			// console.log(
+			// 	"Check cerebros 2: total",
+			// 	this.totalCerebros,
+			// 	" + cerebros ",
+			// 	this.cerebros
+			// );
 			if (this.totalCerebros >= 13) {
 				this.$store.commit("ssot/actualizarVictoria", true);
 			}
