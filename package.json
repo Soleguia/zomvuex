@@ -11,12 +11,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "save-dev": "^0.0.1-security",
     "vue": "^3.2.45",
     "vuex": "^4.1.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.0.0",
-    "sass": "^1.57.1",
+    "sass": "^1.97.1",
     "vite": "^4.0.0"
   },
   "engines": {
