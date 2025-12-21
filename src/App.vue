@@ -120,10 +120,10 @@ body {
 		cursor: pointer;
 
 		&--zombie {
-			background-image: url(https://mentecuadrada.es/zomvuex/assets/img/mano-zombie.png);
+			background-image: url(@/assets/img/mano-zombie.png);
 		}
 		&--infantil {
-			background-image: url(https://mentecuadrada.es/zomvuex/assets/img/ardilla-base.png);
+			background-image: url(@/assets/img/ardilla-base.png);
 		}
 	}
 }

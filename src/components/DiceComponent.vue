@@ -67,25 +67,25 @@ export default {
 	&--zombie {
 		&:before {
 			// content: "\f119";
-			background-image: url(https://mentecuadrada.es/zomvuex/assets/img/zombie-rise.png);
+			background-image: url(@/assets/img/zombie-rise.png);
 		}
 	}
 	&--brain {
 		&:before {
 			// content: "\f004";
-			background-image: url(https://mentecuadrada.es/zomvuex/assets/img/brain.png);
+			background-image: url(@/assets/img/brain.png);
 		}
 	}
 	&--footsteps {
 		&:before {
 			//content: "\f1b0";
-			background-image: url(https://mentecuadrada.es/zomvuex/assets/img/footsteps.png);
+			background-image: url(@/assets/img/footsteps.png);
 		}
 	}
 	&--shot {
 		&:before {
 			// content: "\f1e9";
-			background-image: url(https://mentecuadrada.es/zomvuex/assets/img/shot.png);
+			background-image: url(@/assets/img/shot.png);
 		}
 	}
 }
@@ -94,25 +94,25 @@ export default {
 		&--zombie {
 			&:before {
 				// content: "\f119";
-				background-image: url(https://mentecuadrada.es/zomvuex/assets/img/ardilla-base.png);
+				background-image: url(@/assets/img/ardilla-base.png);
 			}
 		}
 		&--brain {
 			&:before {
 				// content: "\f004";
-				background-image: url(https://mentecuadrada.es/zomvuex/assets/img/nuez.png);
+				background-image: url(@/assets/img/nuez.png);
 			}
 		}
 		&--footsteps {
 			&:before {
 				//content: "\f1b0";
-				background-image: url(https://mentecuadrada.es/zomvuex/assets/img/arbol.png);
+				background-image: url(@/assets/img/arbol.png);
 			}
 		}
 		&--shot {
 			&:before {
 				// content: "\f1e9";
-				background-image: url(https://mentecuadrada.es/zomvuex/assets/img/ardilla.png);
+				background-image: url(@/assets/img/ardilla.png);
 			}
 		}
 	}

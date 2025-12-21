@@ -1,60 +1,46 @@
-import Vue from "vue";
-import store from "./store";
-import App from "./App.vue";
+import { createApp } from 'vue'
+import store from './store'
+import App from './App.vue'
 
-Vue.config.productionTip = false;
+const app = createApp(App)
 
-Vue.filter("colorDados", function(value) {
-  var color = {
-    red: "rojo",
-    green: "verde",
-    yellow: "amarillo"
-  };
-  return color[value];
-});
-Vue.filter("capitalize", function(value) {
-  if (!value) return "";
-  value = value.toString();
-  return value.charAt(0).toUpperCase() + value.slice(1);
-});
+app.config.productionTip = false
 
-Vue.component(
-  "pantalla-inicio",
-  require("./components/PantallaInicio.vue").default
-);
-Vue.component(
-  "pantalla-info",
-  require("./components/PantallaInfo.vue").default
-);
-Vue.component(
-  "pantalla-historico",
-  require("./components/PantallaHistorico.vue").default
-);
-Vue.component(
-  "pantalla-juego",
-  require("./components/PantallaJuego.vue").default
-);
-Vue.component(
-  "game-marker",
-  require("./components/GameMarkerComponent.vue").default
-);
-Vue.component(
-  "dice-component",
-  require("./components/DiceComponent.vue").default
-);
-Vue.component(
-  "dice-counter",
-  require("./components/DiceCounterComponent.vue").default
-);
-Vue.component(
-  "dice-roll",
-  require("./components/DiceRollComponent.vue").default
-);
-
-new Vue({
-  el: "#app",
-  store,
-  components: {
-    App
+// Global filters migrated to globalProperties
+app.config.globalProperties.$filters = {
+  colorDados(value) {
+    const color = {
+      red: "rojo",
+      green: "verde",
+      yellow: "amarillo"
+    }
+    return color[value] || value
+  },
+  capitalize(value) {
+    if (!value) return ""
+    value = value.toString()
+    return value.charAt(0).toUpperCase() + value.slice(1)
   }
-});
+}
+
+// Register global components
+import PantallaInicio from "./components/PantallaInicio.vue"
+import PantallaInfo from "./components/PantallaInfo.vue"
+import PantallaHistorico from "./components/PantallaHistorico.vue"
+import PantallaJuego from "./components/PantallaJuego.vue"
+import GameMarkerComponent from "./components/GameMarkerComponent.vue"
+import DiceComponent from "./components/DiceComponent.vue"
+import DiceCounterComponent from "./components/DiceCounterComponent.vue"
+import DiceRollComponent from "./components/DiceRollComponent.vue"
+
+app.component("pantalla-inicio", PantallaInicio)
+app.component("pantalla-info", PantallaInfo)
+app.component("pantalla-historico", PantallaHistorico)
+app.component("pantalla-juego", PantallaJuego)
+app.component("game-marker", GameMarkerComponent)
+app.component("dice-component", DiceComponent)
+app.component("dice-counter", DiceCounterComponent)
+app.component("dice-roll", DiceRollComponent)
+
+app.use(store)
+app.mount('#app')
